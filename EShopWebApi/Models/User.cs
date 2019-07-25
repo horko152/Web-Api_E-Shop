@@ -32,6 +32,6 @@ namespace EShopWebApi.Models
 		[Column("status")]
 		public int Status { get; set; }
 		[JsonIgnore]
-		public virtual ICollection<Order> Orders { get; set; }
+		public ICollection<Order> Orders { get; set; }
 	}
 }

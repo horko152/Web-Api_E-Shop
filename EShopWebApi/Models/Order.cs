@@ -24,12 +24,13 @@ namespace EShopWebApi.Models
 		public DateTime Date_Of_Creation { get; set; }
 		[Column("comment")]
 		public string Comment { get; set; }
-		[JsonIgnore]
+		//[JsonIgnore]
 		[Column("user_id")]
 		public int User_Id { get; set; }
 		[ForeignKey("User_Id")]
-		public virtual User User { get; set; }
 		[JsonIgnore]
-		public virtual ICollection<Order_Item> Order_Items { get; set; }
+		public User User { get; set; }
+		[JsonIgnore]
+		public ICollection<Order_Item> Order_Items { get; set; }
 	}
 }

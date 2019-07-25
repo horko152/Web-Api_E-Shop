@@ -21,6 +21,6 @@ namespace EShopWebApi.Models
 		[Column("description")]
 		public string Description { get; set; }
 		[JsonIgnore]
-		public virtual ICollection<Product> Products { get; set; }
+		public ICollection<Product> Products { get; set; }
 	}
 }

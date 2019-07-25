@@ -30,13 +30,14 @@ namespace EShopWebApi.Models
 		public int Quantity { get; set; }
 		[Column("description")]
 		public string Description { get; set; }
-		[JsonIgnore]
+		//[JsonIgnore]
 		[Column("category_id")]
 		public int Category_Id { get; set; }
 		[ForeignKey("Category_Id")]
-		public virtual Category Category { get; set; }
 		[JsonIgnore]
-		public virtual ICollection<Order_Item> Order_Items { get; set; }
+		public  Category Category { get; set; }
+		[JsonIgnore]
+		public ICollection<Order_Item> Order_Items { get; set; }
 
 
 	}

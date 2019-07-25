@@ -18,15 +18,17 @@ namespace EShopWebApi.Models
 		[Required]
 		[Column("quantity")]
 		public string Quantity { get; set; }
-		[JsonIgnore]
+		//[JsonIgnore]
 		[Column("order_id")]
 		public int Order_Id { get; set; }
 		[ForeignKey("Order_Id")]
-		public virtual Order Order { get; set; }
 		[JsonIgnore]
+		public  Order Order { get; set; }
+		//[JsonIgnore]
 		[Column("product_id")]
 		public int Product_Id { get; set; }
 		[ForeignKey("Product_Id")]
-		public virtual Product Product { get; set; }
+		[JsonIgnore]
+		public  Product Product { get; set; }
 	}
 }

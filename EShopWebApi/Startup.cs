@@ -26,6 +26,7 @@ namespace EShopWebApi
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
+			services.AddCors();
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 			services.AddSingleton<EShopDbContext>();
 			services.AddSingleton<OrderRepository>();
@@ -45,6 +46,9 @@ namespace EShopWebApi
 			}
 
 			app.UseHttpsRedirection();
+			app.UseCors(
+				options => options.WithOrigins("https://localhost:44308").AllowAnyMethod()
+			);
 			app.UseMvc(routes=>
 			{
 				routes.MapRoute(

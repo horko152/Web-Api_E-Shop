@@ -48,8 +48,8 @@ namespace EShopWebApi.Migrations
                     b.Property<string>("Comment")
                         .HasColumnName("comment");
 
-                    b.Property<DateTime>("Date_Of_Creation")
-                        .HasColumnName("date_of_creation");
+                    b.Property<DateTime>("Created_At")
+                        .HasColumnName("created_at");
 
                     b.Property<int>("User_Id")
                         .HasColumnName("user_id");
@@ -104,6 +104,10 @@ namespace EShopWebApi.Migrations
                         .IsRequired()
                         .HasColumnName("name");
 
+                    b.Property<string>("Photo")
+                        .IsRequired()
+                        .HasColumnName("photo");
+
                     b.Property<decimal>("Price")
                         .HasColumnName("price");
 
@@ -124,19 +128,33 @@ namespace EShopWebApi.Migrations
                         .HasColumnName("id")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("Date_Of_Creation")
-                        .HasColumnName("date_of_creation");
+                    b.Property<bool>("Active")
+                        .HasColumnName("active");
 
-                    b.Property<string>("Login")
-                        .IsRequired()
-                        .HasColumnName("login");
+                    b.Property<DateTime>("Created_At")
+                        .HasColumnName("created_at");
 
-                    b.Property<string>("Password")
+                    b.Property<string>("Email")
                         .IsRequired()
+                        .HasColumnName("email");
+
+                    b.Property<string>("First_Name")
+                        .IsRequired()
+                        .HasColumnName("first_name");
+
+                    b.Property<string>("Last_Name")
+                        .IsRequired()
+                        .HasColumnName("last_name");
+
+                    b.Property<byte>("Password")
                         .HasColumnName("password");
 
-                    b.Property<int>("Status")
-                        .HasColumnName("status");
+                    b.Property<int>("Role")
+                        .HasColumnName("role");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnName("username");
 
                     b.HasKey("Id");
 

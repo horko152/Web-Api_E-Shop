@@ -36,20 +36,15 @@ namespace EShopWebApi.Repository
 
 		public void Create(T entity)
 		{
-			this.DbContext.Set<T>().Add(entity);
+			DbContext.Add(entity);
+			DbContext.SaveChanges();
 		}
 
 		public void Update(int id,T entity)
 		{
-			if (DbContext.Find<T>(id) != null)
-			{
-				DbContext.Entry(entity).State = EntityState.Modified;
-				DbContext.SaveChanges();
-			}
-			else
-			{
-				throw new ArgumentException();
-			}
+			this.DbContext.Set<T>().Update(entity);
+			DbContext.SaveChanges();
+
 		}
 
 		public void Delete(int id)

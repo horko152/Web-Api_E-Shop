@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using EShopWebApi.Enums;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -20,17 +21,29 @@ namespace EShopWebApi.Models
 		[Column("id")]
 		public int Id { get; set; }
 		[Required]
-		[Column("login")]
-		public string Login { get; set; }
+		[Column("active")]
+		public bool Active { get; set; }
+		[Required]
+		[Column("created_at")]
+		public DateTime Created_At { get; set;}
+		[Required]
+		[Column("email")]
+		public string Email { get; set; }
+		[Required]
+		[Column("first_name")]
+		public string First_Name { get; set; }
+		[Required]
+		[Column("last_name")]
+		public string Last_Name { get; set; }
+		[Required]
+		[Column("username")]
+		public string UserName { get; set; }
 		[Required]
 		[Column("password")]
-		public string Password { get; set; }
+		public byte Password { get; set; }
 		[Required]
-		[Column("date_of_creation")]
-		public DateTime Date_Of_Creation { get; set;}
-		[Required]
-		[Column("status")]
-		public int Status { get; set; }
+		[Column("role")]
+		public Role Role { get; set; }
 		[JsonIgnore]
 		public ICollection<Order> Orders { get; set; }
 	}

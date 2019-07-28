@@ -9,12 +9,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EShopWebApi.Controllers
 {
-    [Route("api/order")]
+	[Route("api/order")]
     [ApiController]
     public class OrderController : ControllerBase
     {
 		OrderRepository orderRepository;
-
 		public OrderController(OrderRepository orderRepository)
 		{
 			this.orderRepository = orderRepository;
@@ -40,7 +39,7 @@ namespace EShopWebApi.Controllers
 		[HttpPut("{id}")]
 		public void Update([FromRoute]int id, [FromBody]Order order)
 		{
-			orderRepository.Update(id, order);
+			orderRepository.Update(id,order);
 		}
 		[HttpDelete("{id}")]
 		public void Delete([FromRoute]int id)

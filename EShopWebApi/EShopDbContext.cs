@@ -18,7 +18,7 @@ namespace EShopWebApi
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			optionsBuilder.UseSqlServer(@"Server=DESKTOP-MFSAQ2U;Database=EShopDbWebApi;Trusted_Connection=True;");
+			optionsBuilder.UseSqlServer(@"Server=DESKTOP-MFSAQ2U;Database=WebApiEShopDb;Trusted_Connection=True;");
 		}
 	}
 }

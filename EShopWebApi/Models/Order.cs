@@ -20,8 +20,8 @@ namespace EShopWebApi.Models
 		[Column("id")]
 		public int Id { get; set; }
 		[Required]
-		[Column("date_of_creation")]
-		public DateTime Date_Of_Creation { get; set; }
+		[Column("created_at")]
+		public DateTime Created_At { get; set; }
 		[Column("comment")]
 		public string Comment { get; set; }
 		//[JsonIgnore]

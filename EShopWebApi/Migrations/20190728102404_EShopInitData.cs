@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EShopWebApi.Migrations
 {
-    public partial class EShopDb : Migration
+    public partial class EShopInitData : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,8 +14,8 @@ namespace EShopWebApi.Migrations
                 {
                     id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    name = table.Column<string>(nullable: false),
-                    description = table.Column<string>(nullable: true)
+                    description = table.Column<string>(nullable: true),
+                    name = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -28,10 +28,14 @@ namespace EShopWebApi.Migrations
                 {
                     id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    login = table.Column<string>(nullable: false),
-                    password = table.Column<string>(nullable: false),
-                    date_of_creation = table.Column<DateTime>(nullable: false),
-                    status = table.Column<int>(nullable: false)
+                    active = table.Column<bool>(nullable: false),
+                    created_at = table.Column<DateTime>(nullable: false),
+                    email = table.Column<string>(nullable: false),
+                    first_name = table.Column<string>(nullable: false),
+                    last_name = table.Column<string>(nullable: false),
+                    username = table.Column<string>(nullable: false),
+                    password = table.Column<byte>(nullable: false),
+                    role = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -44,10 +48,11 @@ namespace EShopWebApi.Migrations
                 {
                     id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    description = table.Column<string>(nullable: true),
                     name = table.Column<string>(nullable: false),
+                    photo = table.Column<string>(nullable: false),
                     price = table.Column<decimal>(nullable: false),
                     quantity = table.Column<int>(nullable: false),
-                    description = table.Column<string>(nullable: true),
                     category_id = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -67,7 +72,7 @@ namespace EShopWebApi.Migrations
                 {
                     id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    date_of_creation = table.Column<DateTime>(nullable: false),
+                    created_at = table.Column<DateTime>(nullable: false),
                     comment = table.Column<string>(nullable: true),
                     user_id = table.Column<int>(nullable: false)
                 },

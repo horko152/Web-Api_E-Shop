@@ -18,6 +18,7 @@ namespace EShopWebApi.Controllers
 		{
 			this.orderRepository = orderRepository;
 		}
+
 		[HttpGet]
 		[Route("~/api/orders")]
 		public IQueryable<Order> GetAll()
@@ -36,11 +37,14 @@ namespace EShopWebApi.Controllers
 		{
 			orderRepository.Create(order);
 		}
+
 		[HttpPut("{id}")]
 		public void Update([FromRoute]int id, [FromBody]Order order)
 		{
-			orderRepository.Update(id,order);
+
+			orderRepository.Update(id, order);
 		}
+
 		[HttpDelete("{id}")]
 		public void Delete([FromRoute]int id)
 		{

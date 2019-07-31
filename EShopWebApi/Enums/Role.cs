@@ -7,8 +7,7 @@ namespace EShopWebApi.Enums
 {
 	public enum Role
 	{
-		Admin = 1,
-		Moderator = 2,
-		User = 3
+		user = 1,
+		admin = 2
 	}
 }

@@ -19,6 +19,7 @@ namespace EShopWebApi.Controllers
 		{
 			this.order_itemRepository = order_itemRepository;
 		}
+
 		[HttpGet]
 		[Route("~/api/order_items")]
 		public IQueryable<Order_Item> GetAll()
@@ -30,6 +31,7 @@ namespace EShopWebApi.Controllers
 		public Order_Item GetById([FromRoute]int id)
 		{
 			return order_itemRepository.GetById(id);
+			// return this.Execute<int, OrderItem>(id => order_item.Repository.GetById(id));
 		}
 
 		[HttpPost]
@@ -37,11 +39,13 @@ namespace EShopWebApi.Controllers
 		{
 			order_itemRepository.Create(order_item);
 		}
+
 		[HttpPut("{id}")]
 		public void Update([FromRoute]int id, [FromBody]Order_Item order_item)
 		{
 			order_itemRepository.Update(id, order_item);
 		}
+
 		[HttpDelete("{id}")]
 		public void Delete([FromRoute]int id)
 		{

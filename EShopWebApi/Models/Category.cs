@@ -15,11 +15,14 @@ namespace EShopWebApi.Models
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		[Column("id")]
 		public int Id { get; set; }
+
 		[Column("description")]
 		public string Description { get; set; }
+
 		[Required]
 		[Column("name")]
 		public string Name { get; set; }
+
 		[JsonIgnore]
 		public ICollection<Product> Products { get; set; }
 	}

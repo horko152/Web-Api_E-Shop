@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EShopWebApi.Migrations
 {
     [DbContext(typeof(EShopDbContext))]
-    [Migration("20190728102404_EShopInitData")]
-    partial class EShopInitData
+    [Migration("20190730173729_InitLocalDb")]
+    partial class InitLocalDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

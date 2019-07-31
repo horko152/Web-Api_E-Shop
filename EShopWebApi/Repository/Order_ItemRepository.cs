@@ -8,6 +8,7 @@ namespace EShopWebApi.Repository
 {
 	public class Order_ItemRepository : GeneralRepository<Order_Item>
 	{
+		
 		public Order_ItemRepository(EShopDbContext DbContext) : base(DbContext)
 		{
 

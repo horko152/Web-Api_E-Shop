@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using EShopWebApi.Repository;
 using Microsoft.AspNetCore.Builder;
@@ -23,21 +25,38 @@ namespace EShopWebApi
 		{
 			Configuration = configuration;
 		}
-
-		public IConfiguration Configuration { get; }
+		public Startup(IHostingEnvironment env)
+		{
+			Configuration = new ConfigurationBuilder().SetBasePath(env.ContentRootPath).AddJsonFile("appsettings.json").Build();
+		}
+		public IConfiguration Configuration { get; set; }
+		public static string ConnectionString { get ; private set; }
 
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
 
-			services.AddCors();
+			services.AddCors(c =>
+			{
+				c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+			});
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 			services.AddSingleton<EShopDbContext>();
 			services.AddSingleton<OrderRepository>();
 			services.AddSingleton<Order_ItemRepository>();
 			services.AddSwaggerGen(c =>
 			{
-				c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+				c.SwaggerDoc("v1", new Info
+				{
+					Version = "v1",
+					Title = "E-Shop Api",
+					Description = "Orders and Order_Items  https://eshopwebapi20190731043135.azurewebsites.net",
+					
+					//c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+				});
+				var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+				var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+				c.IncludeXmlComments(xmlPath);
 			});
 		}
 
@@ -54,16 +73,15 @@ namespace EShopWebApi
 			}
 
 			app.UseHttpsRedirection();
-			app.UseCors(
-				options => options.WithOrigins("*").AllowAnyMethod()
-			);
+			app.UseCors(options => options.AllowAnyOrigin());
 			app.UseMvc(routes=>
 			{
 				routes.MapRoute(
 					name: "default",
 					template: "api/{controller}/{id?}");
 			});
-
+			ConnectionString = Configuration["ConnectionString:EShopDb"];
+			app.UseStaticFiles();
 			app.UseSwagger();
 
 			// Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.  

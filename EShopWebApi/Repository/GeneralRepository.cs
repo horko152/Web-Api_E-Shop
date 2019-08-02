@@ -36,7 +36,7 @@ namespace EShopWebApi.Repository
 
 		public void Create(T entity)
 		{
-			this.DbContext.Set<T>().Add(entity);
+			DbContext.Add(entity);
 			DbContext.SaveChanges();
 		}
 

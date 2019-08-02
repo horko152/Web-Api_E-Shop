@@ -11,6 +11,10 @@ namespace EShopWebApi.Models
 	[Table("orders")]
 	public class Order
 	{
+		public Order()
+		{
+			Created_At = DateTime.Now;
+		}
 		[Key]
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		[Column("id")]

@@ -18,9 +18,21 @@ namespace EShopWebApi
 		public DbSet<Product> Products { get; set;}
 		public DbSet<Category> Categories { get; set; }
 
+		//public EShopDbContext(DbContextOptions<EShopDbContext> options) : base(options)
+		//{
+
+		//}
+		public static string GetConnectionString()
+		{
+			return Startup.ConnectionString;
+		}
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			optionsBuilder.UseNpgsql("Host=ec2-54-217-219-235.eu-west-1.compute.amazonaws.com;Port=5432;Database=d823iprm3nkr5a;Username=gvucvkzmaktram; Password=b959f57f2f1587e1f044fdee1ad86b69e827cc07fb71ea269a7decf8368ab3d8;Use SSL Stream = True; SSL Mode = Require; TrustServerCertificate = True");
+			if(!optionsBuilder.IsConfigured)
+			{
+				var con = GetConnectionString();
+				optionsBuilder.UseNpgsql(con);
+			}
 		}
 	}
 }

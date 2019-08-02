@@ -12,6 +12,10 @@ namespace EShopWebApi.Models
 	[Table("users")]
 	public class User
 	{
+		public User()
+		{
+			Created_At = DateTime.Now;
+		}
 		[Key]
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		[Column("id")]

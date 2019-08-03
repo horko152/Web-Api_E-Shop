@@ -5,12 +5,14 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using EShopWebApi.Models;
 
 namespace EShopWebApi.Models
 {
 	[Table("order_items")]
 	public class Order_Item
 	{
+
 		[Key]
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		[Column("id")]

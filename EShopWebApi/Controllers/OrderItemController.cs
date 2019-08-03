@@ -31,12 +31,12 @@ namespace EShopWebApi.Controllers
 		}
 
 		///<summary>
-		///Get Order_Item by Id
+		///Get Order_Items by OrderId
 		///</summary>
 		[HttpGet("{id:int}")]
-		public Order_Item GetById([FromRoute]int id)
+		public IQueryable<Order_Item> GetByOrderId([FromRoute]int id)
 		{
-			return order_itemRepository.GetById(id);
+			return order_itemRepository.GetOrderItemByOrderId(id);
 			// return this.Execute<int, OrderItem>(id => order_item.Repository.GetById(id));
 		}
 
@@ -48,8 +48,15 @@ namespace EShopWebApi.Controllers
 		{
 			order_itemRepository.Create(order_item);
 			HttpContext.Response.StatusCode = 201;
-
 		}
+
+		//[HttpPost]
+		//[Route("~/api/order_item")]
+		//public int CreateOrderItem([FromBody] Order_Item order_Item)
+		//{
+		//	HttpContext.Response.StatusCode = 201;
+		//	return order_itemRepository.CreateOrderItem(order_Item);
+		//}
 
 		///<summary>
 		///Update Order_Item

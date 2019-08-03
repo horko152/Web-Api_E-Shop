@@ -29,24 +29,36 @@ namespace EShopWebApi.Controllers
 			return orderRepository.GetAll();
 		}
 
+		/////<summary>
+		/////Get Order By Id
+		/////</summary>
+		//[HttpGet("{id:int}")]
+		//[Route("~/api/order")]
+		//public Order GetById([FromRoute]int id)
+		//{
+		//	return orderRepository.GetById(id);
+		//}
+
 		///<summary>
-		///Get Order By Id
+		///Get Order By UserId
 		///</summary>
 		[HttpGet("{id:int}")]
-		public Order GetById([FromRoute]int id)
+		public IQueryable<Order> GetOrderByUserId([FromRoute] int id)
 		{
-			return orderRepository.GetById(id);
+			return orderRepository.GetOrderByUserId(id); 
 		}
 
 		///<summary>
 		///Create Order
 		///</summary>
 		[HttpPost]
-		public void Create([FromBody]Order order)
+		public int CreateOrder([FromBody]Order order)
 		{
-			orderRepository.Create(order);
 			HttpContext.Response.StatusCode = 201;
+			return orderRepository.CreateOrder(order);
+			
 		}
+
 
 		///<summary>
 		///Update Order

@@ -1,7 +1,10 @@
 ﻿using EShopWebApi.Models;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace EShopWebApi.Repository
@@ -12,11 +15,11 @@ namespace EShopWebApi.Repository
 		{
 			this.DbContext = DbContext;
 		}
-		public int CreateOrderItem(Order_Item Entity)
+		public string CreateOrderItem(Order_Item Entity)
 		{
-			DbContext.Add(Entity);
-			DbContext.SaveChanges();
-			return Entity.Id;
+				DbContext.Add(Entity);
+				DbContext.SaveChanges();
+				return "Success";
 		}
 		public IQueryable<Order_Item> GetOrderItemByOrderId(int id)
 		{
@@ -29,6 +32,23 @@ namespace EShopWebApi.Repository
 			{
 				throw new ArgumentException();
 			}
+		}
+		public void UpdateOrderItem(int id, Order_Item Entity)
+		{
+			var order_item = DbContext.Order_Items.FirstOrDefault(x => x.Id == id);
+			//HttpResponseMessage responce = null;
+			if (order_item != null)
+			{
+				order_item.Quantity = Entity.Quantity;
+				order_item.Product_Id = Entity.Product_Id;
+				DbContext.SaveChanges();
+				//return responce = new HttpResponseMessage(HttpStatusCode.OK);
+			}
+			else
+			{
+				throw new ArgumentException();
+			}
+			//else return responce = new HttpResponseMessage(HttpStatusCode.NotFound);
 		}
 	}
 }

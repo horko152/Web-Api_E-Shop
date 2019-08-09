@@ -31,7 +31,7 @@ namespace EShopWebApi
 			if(!optionsBuilder.IsConfigured)
 			{
 				var con = GetConnectionString();
-				optionsBuilder.UseSqlServer(con);
+				optionsBuilder.UseNpgsql(con);
 			}
 		}
 	}

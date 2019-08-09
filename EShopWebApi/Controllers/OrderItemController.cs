@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using EShopWebApi.Models;
 using EShopWebApi.Repository;
@@ -43,28 +44,29 @@ namespace EShopWebApi.Controllers
 		///<summary>
 		///Create new Order_Item
 		///</summary>
-		[HttpPost]
-		public void Create([FromBody]Order_Item order_item)
-		{
-			order_itemRepository.Create(order_item);
-			HttpContext.Response.StatusCode = 201;
-		}
-
 		//[HttpPost]
-		//[Route("~/api/order_item")]
-		//public int CreateOrderItem([FromBody] Order_Item order_Item)
+		//public void Create([FromBody]Order_Item order_item)
 		//{
 		//	HttpContext.Response.StatusCode = 201;
-		//	return order_itemRepository.CreateOrderItem(order_Item);
+		//	order_itemRepository.Create(order_item);
+
 		//}
+
+		[HttpPost]
+		[Route("~/api/order_item")]
+		public string CreateOrderItem([FromBody] Order_Item order_Item)
+		{
+			HttpContext.Response.StatusCode = 201;
+			return order_itemRepository.CreateOrderItem(order_Item);
+		}
 
 		///<summary>
 		///Update Order_Item
 		///</summary>
 		[HttpPut("{id}")]
-		public void Update([FromRoute]int id, [FromBody]Order_Item order_item)
+		public void UpdateOrderItem([FromRoute]int id, [FromBody]Order_Item order_item)
 		{
-			order_itemRepository.Update(id, order_item);
+			order_itemRepository.UpdateOrderItem(id, order_item);
 		}
 
 		///<summary>

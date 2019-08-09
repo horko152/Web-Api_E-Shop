@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using EShopWebApi.Models;
 using EShopWebApi.Repository;
@@ -64,10 +65,10 @@ namespace EShopWebApi.Controllers
 		///Update Order
 		///</summary>
 		[HttpPut("{id}")]
-		public void Update([FromRoute]int id, [FromBody]Order order)
+		public void UpdateOrder([FromRoute]int id, [FromBody]Order order)
 		{
 
-			orderRepository.Update(id, order);
+			orderRepository.UpdateOrder(id, order);
 		}
 
 		///<summary>

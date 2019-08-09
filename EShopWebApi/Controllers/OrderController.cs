@@ -55,7 +55,6 @@ namespace EShopWebApi.Controllers
 		[HttpPost]
 		public int CreateOrder([FromBody]Order order)
 		{
-			HttpContext.Response.StatusCode = 201;
 			return orderRepository.CreateOrder(order);
 			
 		}
